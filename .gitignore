@@ -1,0 +1,9 @@
+# CodeIgniter 4 .gitignore
+/vendor/
+/writable/
+.env
+.phpunit.xml.dist
+composer.lock
+!public/.htaccess
+!public/index.php
+extension (edit php.ini at apache config).txt
