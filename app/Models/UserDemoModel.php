@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
+use CodeIgniter\Validation\Validation;
 
 class UserDemoModel extends Model
 {
@@ -11,7 +12,7 @@ class UserDemoModel extends Model
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
-    protected $allowedFields    = ['username', 'full_name', 'email', 'created_at'];
+    protected $allowedFields    = ['username', 'full_name', 'email', 'password'];
     protected $useTimestamps    = false;
 
     /**
@@ -23,10 +24,18 @@ class UserDemoModel extends Model
     }
 
     /**
-     * Get all users
+     * Get user by username
      */
-    public function getAll()
+    public function getUserByUsername($username)
     {
-        return $this->findAll();
+        return $this->where('username', $username)->first();
+    }
+
+    /**
+     * Update user password
+     */
+    public function updatePassword($userId, $hashedPassword)
+    {
+        return $this->update($userId, ['password' => $hashedPassword]);
     }
 }
